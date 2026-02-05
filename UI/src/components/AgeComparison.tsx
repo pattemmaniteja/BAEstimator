@@ -46,7 +46,7 @@ export function AgeComparison({ chronologicalAge, biologicalAge }: AgeComparison
           </Bar>
         </BarChart>
       </ResponsiveContainer>
-      <div className="text-center mt-4">
+      <div className="text-center mt-4" style={{ marginTop: '35px' }}>
         <p className={`text-lg font-medium ${difference < 0 ? 'text-health-excellent' : difference > 0 ? 'text-health-risk' : 'text-muted-foreground'}`}>
           {difference < 0 
             ? `Your body is ${Math.abs(difference)} years younger than your calendar age! 🎉` 

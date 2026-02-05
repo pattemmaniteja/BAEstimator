@@ -54,3 +54,16 @@ Incoming Request: POST http://localhost:8000/predict
 5. Sending Result back to UI: {'chronological_age': 35, 'health_score': 4.9, 'biological_age': 35.21, 'age_acceleration': 0.21}
 --- [VALIDATION END] ---
 
+
+--- Server Started ---
+Incoming Request: OPTIONS http://localhost:8000/predict
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'age': 35, 'sleep_hours': 7, 'sleep_quality': 2, 'smoker': 1, 'alcohol': 1, 'bmi': 24, 'resting_hr': 72, 'systolic_bp': 120, 'diastolic_bp': 80, 'cholesterol': 190, 'daily_steps': 6000, 'family_history': 1, 'water_intake': 2}
+2. Formatted Model Input: {'sleep_hours': 7.0, 'sleep_quality': 2, 'smoker': 1, 'alcohol': 1, 'bmi': 24.0, 'resting_hr': 72.0, 'systolic_bp': 120.0, 'diastolic_bp': 80.0, 'cholesterol': 190.0, 'daily_steps': 6000, 'family_history': 1, 'water_intake': 2.0}
+3. ML Model Predicted Health Score: 8.115946666666664
+4. ML Calculated Biological Age: 33
+5. Sending Result back to UI: {'chronological_age': 35, 'health_score': 8.12, 'biological_age': 33.0, 'age_acceleration': -2.0}
+--- [VALIDATION END] ---
+

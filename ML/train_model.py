@@ -6,7 +6,7 @@ from sklearn.metrics import r2_score, mean_absolute_error
 
 # -------------------- LOAD DATA --------------------
 df = pd.read_csv(
-    r"D:\MPS\MLAgeEstimator\balanced_dataset.csv"
+    r"C:\users\manit\onedrive\desktop\baestimator\ml\balanced_dataset.csv"
 )
 
 # -------------------- STANDARDIZE COLUMN NAMES --------------------
