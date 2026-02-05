@@ -1,0 +1,56 @@
+
+--- Server Started ---
+
+--- Server Started ---
+
+--- Server Started ---
+
+--- Server Started ---
+
+--- Server Started ---
+Incoming Request: GET http://localhost:8000/
+Incoming Request: GET http://localhost:8000/favicon.ico
+Incoming Request: OPTIONS http://localhost:8000/predict
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'age': 35, 'sleep_hours': 7, 'sleep_quality': 2, 'smoker': 0, 'alcohol': 1, 'bmi': 24, 'resting_hr': 72, 'systolic_bp': 120, 'diastolic_bp': 80, 'cholesterol': 190, 'daily_steps': 6000, 'family_history': 0, 'water_intake': 2}
+2. Formatted Model Input: {'sleep_hours': 7.0, 'sleep_quality': 2, 'smoker': 0, 'alcohol': 1, 'bmi': 24.0, 'resting_hr': 72.0, 'systolic_bp': 120.0, 'diastolic_bp': 80.0, 'cholesterol': 190.0, 'daily_steps': 6000, 'family_history': 0, 'water_intake': 2.0}
+3. ML Model Predicted Health Score: 9.266492888888894
+4. ML Calculated Biological Age: 33
+5. Sending Result back to UI: {'chronological_age': 35, 'health_score': 9.27, 'biological_age': 33.0, 'age_acceleration': -2.0}
+--- [VALIDATION END] ---
+
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'age': 21, 'sleep_hours': 12, 'sleep_quality': 2, 'smoker': 0, 'alcohol': 0, 'bmi': 17, 'resting_hr': 82, 'systolic_bp': 120, 'diastolic_bp': 80, 'cholesterol': 100, 'daily_steps': 8000, 'family_history': 0, 'water_intake': 2}
+2. Formatted Model Input: {'sleep_hours': 12.0, 'sleep_quality': 2, 'smoker': 0, 'alcohol': 0, 'bmi': 17.0, 'resting_hr': 82.0, 'systolic_bp': 120.0, 'diastolic_bp': 80.0, 'cholesterol': 100.0, 'daily_steps': 8000, 'family_history': 0, 'water_intake': 2.0}
+3. ML Model Predicted Health Score: 9.584352888888889
+4. ML Calculated Biological Age: 20
+5. Sending Result back to UI: {'chronological_age': 21, 'health_score': 9.58, 'biological_age': 20.0, 'age_acceleration': -1.0}
+--- [VALIDATION END] ---
+
+
+--- Server Started ---
+Incoming Request: OPTIONS http://localhost:8000/predict
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'age': 18, 'sleep_hours': 7, 'sleep_quality': 2, 'smoker': 0, 'alcohol': 0, 'bmi': 24, 'resting_hr': 72, 'systolic_bp': 120, 'diastolic_bp': 80, 'cholesterol': 190, 'daily_steps': 6000, 'family_history': 0, 'water_intake': 2}
+2. Formatted Model Input: {'sleep_hours': 7.0, 'sleep_quality': 2, 'smoker': 0, 'alcohol': 0, 'bmi': 24.0, 'resting_hr': 72.0, 'systolic_bp': 120.0, 'diastolic_bp': 80.0, 'cholesterol': 190.0, 'daily_steps': 6000, 'family_history': 0, 'water_intake': 2.0}
+3. ML Model Predicted Health Score: 9.621892888888887
+4. ML Calculated Biological Age: 17
+5. Sending Result back to UI: {'chronological_age': 18, 'health_score': 9.62, 'biological_age': 17.0, 'age_acceleration': -1.0}
+--- [VALIDATION END] ---
+
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'age': 35, 'sleep_hours': 4, 'sleep_quality': 0, 'smoker': 1, 'alcohol': 1, 'bmi': 24, 'resting_hr': 72, 'systolic_bp': 120, 'diastolic_bp': 80, 'cholesterol': 190, 'daily_steps': 6000, 'family_history': 1, 'water_intake': 2}
+2. Formatted Model Input: {'sleep_hours': 4.0, 'sleep_quality': 0, 'smoker': 1, 'alcohol': 1, 'bmi': 24.0, 'resting_hr': 72.0, 'systolic_bp': 120.0, 'diastolic_bp': 80.0, 'cholesterol': 190.0, 'daily_steps': 6000, 'family_history': 1, 'water_intake': 2.0}
+3. ML Model Predicted Health Score: 4.895980888888888
+4. ML Calculated Biological Age: 35.20803822222223
+5. Sending Result back to UI: {'chronological_age': 35, 'health_score': 4.9, 'biological_age': 35.21, 'age_acceleration': 0.21}
+--- [VALIDATION END] ---
+
