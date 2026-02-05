@@ -1,0 +1,209 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap');
+
+@layer base {
+  :root {
+    /* Medical Professional Color Palette */
+    --background: 210 20% 98%;
+    --foreground: 210 40% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 40% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 40% 11%;
+
+    /* Deep Teal - Trust & Health */
+    --primary: 168 80% 30%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Soft Blue-Gray */
+    --secondary: 210 20% 96%;
+    --secondary-foreground: 210 40% 20%;
+
+    --muted: 210 15% 94%;
+    --muted-foreground: 210 15% 45%;
+
+    /* Accent - Lighter Teal */
+    --accent: 168 60% 94%;
+    --accent-foreground: 168 80% 25%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 20% 90%;
+    --input: 210 20% 90%;
+    --ring: 168 80% 30%;
+
+    --radius: 0.75rem;
+
+    /* Custom Health Colors */
+    --health-excellent: 152 76% 42%;
+    --health-good: 142 72% 45%;
+    --health-moderate: 45 93% 47%;
+    --health-warning: 32 95% 52%;
+    --health-risk: 0 72% 51%;
+
+    /* Gradient Tokens */
+    --gradient-primary: linear-gradient(135deg, hsl(168 80% 30%) 0%, hsl(180 65% 40%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(210 20% 98%) 0%, hsl(180 30% 96%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(210 20% 99%) 100%);
+    --gradient-success: linear-gradient(135deg, hsl(152 76% 42%) 0%, hsl(168 80% 35%) 100%);
+    --gradient-gauge: conic-gradient(
+      hsl(var(--health-excellent)) 0deg,
+      hsl(var(--health-good)) 72deg,
+      hsl(var(--health-moderate)) 144deg,
+      hsl(var(--health-warning)) 216deg,
+      hsl(var(--health-risk)) 288deg,
+      hsl(var(--health-risk)) 360deg
+    );
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.07);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.08);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.08), 0 8px 10px -6px rgb(0 0 0 / 0.08);
+    --shadow-glow: 0 0 40px -10px hsl(168 80% 30% / 0.3);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 210 40% 8%;
+    --foreground: 210 20% 98%;
+
+    --card: 210 35% 12%;
+    --card-foreground: 210 20% 98%;
+
+    --popover: 210 35% 12%;
+    --popover-foreground: 210 20% 98%;
+
+    --primary: 168 70% 45%;
+    --primary-foreground: 210 40% 8%;
+
+    --secondary: 210 30% 16%;
+    --secondary-foreground: 210 20% 90%;
+
+    --muted: 210 30% 18%;
+    --muted-foreground: 210 15% 55%;
+
+    --accent: 168 50% 18%;
+    --accent-foreground: 168 70% 70%;
+
+    --destructive: 0 62% 40%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 30% 20%;
+    --input: 210 30% 20%;
+    --ring: 168 70% 45%;
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', sans-serif;
+  }
+}
+
+@layer utilities {
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+
+  .gradient-card {
+    background: var(--gradient-card);
+  }
+
+  .gradient-success {
+    background: var(--gradient-success);
+  }
+
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .text-gradient {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .health-excellent {
+    color: hsl(var(--health-excellent));
+  }
+
+  .health-good {
+    color: hsl(var(--health-good));
+  }
+
+  .health-moderate {
+    color: hsl(var(--health-moderate));
+  }
+
+  .health-warning {
+    color: hsl(var(--health-warning));
+  }
+
+  .health-risk {
+    color: hsl(var(--health-risk));
+  }
+
+  .bg-health-excellent {
+    background-color: hsl(var(--health-excellent));
+  }
+
+  .bg-health-good {
+    background-color: hsl(var(--health-good));
+  }
+
+  .bg-health-moderate {
+    background-color: hsl(var(--health-moderate));
+  }
+
+  .bg-health-warning {
+    background-color: hsl(var(--health-warning));
+  }
+
+  .bg-health-risk {
+    background-color: hsl(var(--health-risk));
+  }
+}
