@@ -7,6 +7,7 @@ import { ChatMessage } from '@/types/health';
 import { MessageCircle, X, Send, Bot, User, Sparkles } from 'lucide-react';
 
 const healthResponses: Record<string, string> = {
+  'cholesterol': 'Cholesterol is a waxy substance essential for building healthy cells, but high levels can increase the risk of heart disease. To manage cholesterol levels, it\'s important to maintain a healthy diet, exercise regularly, and monitor cholesterol levels through screenings.',
   'biological age': 'Biological age measures how well your body has aged compared to your chronological age. It\'s influenced by lifestyle factors, genetics, and environment. Unlike your birth date, biological age can be improved through healthy habits.',
   'longevity': 'Longevity refers to living a long, healthy life. Key factors include: quality sleep (7-9 hours), regular exercise, balanced nutrition, stress management, social connections, and avoiding harmful habits like smoking.',
   'sleep': 'Sleep is crucial for longevity. During deep sleep, your body repairs cells, consolidates memories, and regulates hormones. Aim for 7-9 hours of quality sleep. Tips: maintain a consistent schedule, limit screens before bed, and keep your room cool and dark.',

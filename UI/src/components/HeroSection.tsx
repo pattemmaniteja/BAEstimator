@@ -62,7 +62,7 @@ export function HeroSection({ onGetStarted }: HeroSectionProps) {
           </motion.div>
 
           {/* Stats */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
@@ -78,7 +78,7 @@ export function HeroSection({ onGetStarted }: HeroSectionProps) {
                 <div className="text-sm text-muted-foreground">{stat.label}</div>
               </div>
             ))}
-          </motion.div>
+          </motion.div> */}
         </motion.div>
 
         {/* Feature cards */}
@@ -117,23 +117,6 @@ export function HeroSection({ onGetStarted }: HeroSectionProps) {
               <p className="text-muted-foreground text-sm">{feature.description}</p>
             </motion.div>
           ))}
-        </motion.div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="flex flex-col items-center text-muted-foreground"
-          >
-            <span className="text-sm mb-2">Scroll to explore</span>
-            <ChevronDown className="w-5 h-5" />
-          </motion.div>
         </motion.div>
       </div>
 
