@@ -1,94 +1,67 @@
 import { HealthFormData, HealthResults, Recommendation, MetricAnalysis } from '@/types/health';
-
-export function calculateHealthResults(data: HealthFormData): HealthResults {
-  let ageModifier = 0;
+export function calculateHealthResults(
+  data: HealthFormData,
+  biologicalAge: number,
+  healthScore: number
+): HealthResults {
   const recommendations: Recommendation[] = [];
   const metrics: MetricAnalysis[] = [];
 
-  // Sleep Analysis
   const sleepScore = analyzeSleep(data.sleepHours, data.sleepQuality);
-  ageModifier += sleepScore.modifier;
   metrics.push(sleepScore.metric);
   if (sleepScore.recommendation) recommendations.push(sleepScore.recommendation);
 
-  // Exercise Analysis
   const exerciseScore = analyzeExercise(data.dailySteps, data.exerciseFrequency);
-  ageModifier += exerciseScore.modifier;
   metrics.push(exerciseScore.metric);
   if (exerciseScore.recommendation) recommendations.push(exerciseScore.recommendation);
 
-  // Habits Analysis
   const habitsScore = analyzeHabits(data.smoker, data.alcoholFrequency);
-  ageModifier += habitsScore.modifier;
   if (habitsScore.recommendation) recommendations.push(habitsScore.recommendation);
 
-  // BMI Analysis
   const bmiScore = analyzeBMI(data.bmi);
-  ageModifier += bmiScore.modifier;
   metrics.push(bmiScore.metric);
   if (bmiScore.recommendation) recommendations.push(bmiScore.recommendation);
 
-  // Heart Rate Analysis
   const heartScore = analyzeHeartRate(data.restingHeartRate);
-  ageModifier += heartScore.modifier;
   metrics.push(heartScore.metric);
   if (heartScore.recommendation) recommendations.push(heartScore.recommendation);
 
-  // Blood Pressure Analysis
   const bpScore = analyzeBloodPressure(data.systolicBP, data.diastolicBP);
-  ageModifier += bpScore.modifier;
   metrics.push(bpScore.metric);
   if (bpScore.recommendation) recommendations.push(bpScore.recommendation);
 
-  // Cholesterol Analysis
   const cholesterolScore = analyzeCholesterol(data.cholesterolTotal);
-  ageModifier += cholesterolScore.modifier;
   metrics.push(cholesterolScore.metric);
   if (cholesterolScore.recommendation) recommendations.push(cholesterolScore.recommendation);
 
-  // Blood Sugar Analysis
   const bloodSugarScore = analyzeBloodSugar(data.bloodSugar);
-  ageModifier += bloodSugarScore.modifier;
   metrics.push(bloodSugarScore.metric);
   if (bloodSugarScore.recommendation) recommendations.push(bloodSugarScore.recommendation);
 
-  // Hydration Analysis
   const hydrationScore = analyzeHydration(data.waterIntake);
-  ageModifier += hydrationScore.modifier;
   metrics.push(hydrationScore.metric);
   if (hydrationScore.recommendation) recommendations.push(hydrationScore.recommendation);
 
-  // Family History Analysis
   const familyScore = analyzeFamilyHistory(data);
-  ageModifier += familyScore.modifier;
   if (familyScore.recommendation) recommendations.push(familyScore.recommendation);
 
-  // Calculate biological age
-  const biologicalAge = Math.max(18, Math.round(data.chronologicalAge + ageModifier));
   const ageDifference = biologicalAge - data.chronologicalAge;
 
-  // Calculate health score (0-10)
-  const healthScore = Math.max(0, Math.min(10, 7 - (ageModifier / 3)));
-
-  // Determine risk zone
   let riskZone: 'low' | 'medium' | 'high';
-  if (healthScore >= 7) {
-    riskZone = 'low';
-  } else if (healthScore >= 4) {
-    riskZone = 'medium';
-  } else {
-    riskZone = 'high';
-  }
+  if (healthScore >= 7) riskZone = 'low';
+  else if (healthScore >= 4) riskZone = 'medium';
+  else riskZone = 'high';
 
   return {
     biologicalAge,
-    healthScore: Math.round(healthScore * 10) / 10,
+    healthScore,
     riskZone,
     ageDifference,
     recommendations: recommendations.slice(0, 5),
     metrics,
   };
 }
+
 
 function analyzeSleep(hours: number, quality: string) {
   let modifier = 0;
@@ -523,10 +496,61 @@ function analyzeFamilyHistory(data: HealthFormData) {
   return { modifier, recommendation };
 }
 
-export function simulateWhatIf(
+export async function simulateWhatIf(
   baseData: HealthFormData,
   changes: Partial<HealthFormData>
-): HealthResults {
-  const modifiedData = { ...baseData, ...changes };
-  return calculateHealthResults(modifiedData);
+): Promise<HealthResults> {
+
+  const modifiedData: HealthFormData = {
+    ...baseData,
+    ...changes,
+  };
+
+  const payload = {
+    age: modifiedData.chronologicalAge,
+    sleep_hours: modifiedData.sleepHours,
+    sleep_quality:
+      modifiedData.sleepQuality === 'poor' ? 0 :
+      modifiedData.sleepQuality === 'fair' ? 1 :
+      modifiedData.sleepQuality === 'good' ? 2 : 3,
+    smoker: modifiedData.smoker ? 1 : 0,
+    alcohol:
+      modifiedData.alcoholFrequency === 'never' ? 0 :
+      modifiedData.alcoholFrequency === 'occasionally' ? 1 :
+      modifiedData.alcoholFrequency === 'weekly' ? 2 : 3,
+    bmi: modifiedData.bmi,
+    resting_hr: modifiedData.restingHeartRate,
+    systolic_bp: modifiedData.systolicBP,
+    diastolic_bp: modifiedData.diastolicBP,
+    cholesterol: modifiedData.cholesterolTotal,
+    daily_steps: modifiedData.dailySteps,
+    family_history:
+      modifiedData.familyHeartDisease ||
+      modifiedData.familyDiabetes ||
+      modifiedData.familyCancer ? 1 : 0,
+    water_intake: modifiedData.waterIntake,
+  };
+
+  const response = await fetch('http://localhost:8000/simulate', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    throw new Error('Simulation failed');
+  }
+
+  const ml = await response.json();
+
+  return {
+    biologicalAge: ml.biological_age,
+    healthScore: ml.health_score,
+    ageDifference: ml.age_acceleration,
+    riskZone:
+      ml.health_score >= 7 ? 'low' :
+      ml.health_score >= 4 ? 'medium' : 'high',
+    recommendations: [],
+    metrics: [],
+  };
 }

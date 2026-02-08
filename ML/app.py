@@ -152,6 +152,45 @@ async def predict(request: Request):
         log_validation(f"❌ Server Error: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
+@app.post("/simulate")
+async def simulate(request: Request):
+    if model is None:
+        raise HTTPException(status_code=500, detail="Model not loaded")
+
+    try:
+        raw_body = await request.json()
+
+        try:
+            data = HealthData(**raw_body)
+        except Exception as e:
+            raise HTTPException(status_code=422, detail=str(e))
+
+        features = [
+            "sleep_hours", "sleep_quality",
+            "smoker", "alcohol", "bmi",
+            "resting_hr", "systolic_bp", "diastolic_bp",
+            "cholesterol", "daily_steps",
+            "family_history", "water_intake"
+        ]
+
+        input_dict = data.model_dump()
+        model_input = {k: input_dict[k] for k in features}
+
+        df = pd.DataFrame([model_input])
+
+        health_score = float(model.predict(df)[0])
+        biological_age = compute_biological_age(data.age, health_score)
+
+        return {
+            "health_score": round(health_score, 2),
+            "biological_age": round(biological_age, 2),
+            "age_acceleration": round(biological_age - data.age, 2)
+        }
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 if __name__ == "__main__":
     # Run the API server
     uvicorn.run(app, host="0.0.0.0", port=8000)

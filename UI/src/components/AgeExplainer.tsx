@@ -31,8 +31,8 @@ export function AgeExplainer() {
           >
             <Card variant="elevated" className="h-full">
               <CardContent className="p-8">
-                <div className="w-16 h-16 rounded-2xl bg-secondary flex items-center justify-center mb-6">
-                  <Clock className="w-8 h-8 text-secondary-foreground" />
+                <div className="w-16 h-16 rounded-2xl gradient-primary flex items-center justify-center mb-6">
+                  <Clock className="w-8 h-8 text-primary-foreground" />
                 </div>
                 <h3 className="font-display text-2xl font-semibold mb-4">Chronological Age</h3>
                 <p className="text-muted-foreground mb-6">

@@ -67,3 +67,507 @@ Incoming Request: POST http://localhost:8000/predict
 5. Sending Result back to UI: {'chronological_age': 35, 'health_score': 8.12, 'biological_age': 33.0, 'age_acceleration': -2.0}
 --- [VALIDATION END] ---
 
+
+--- Server Started ---
+Incoming Request: OPTIONS http://localhost:8000/predict
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+
+--- Server Started ---
+Incoming Request: OPTIONS http://localhost:8000/predict
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'age': 35, 'sleep_hours': 7, 'sleep_quality': 2, 'smoker': 1, 'alcohol': 1, 'bmi': 24, 'resting_hr': 72, 'systolic_bp': 120, 'diastolic_bp': 80, 'cholesterol': 190, 'daily_steps': 6000, 'family_history': 0, 'water_intake': 2}
+2. Formatted Model Input: {'sleep_hours': 7.0, 'sleep_quality': 2, 'smoker': 1, 'alcohol': 1, 'bmi': 24.0, 'resting_hr': 72.0, 'systolic_bp': 120.0, 'diastolic_bp': 80.0, 'cholesterol': 190.0, 'daily_steps': 6000, 'family_history': 0, 'water_intake': 2.0}
+3. ML Model Predicted Health Score: 8.219163999999997
+4. ML Calculated Biological Age: 33
+5. Sending Result back to UI: {'chronological_age': 35, 'health_score': 8.22, 'biological_age': 33.0, 'age_acceleration': -2.0}
+--- [VALIDATION END] ---
+
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'age': 35, 'sleep_hours': 7, 'sleep_quality': 2, 'smoker': 1, 'alcohol': 0, 'bmi': 10, 'resting_hr': 10, 'systolic_bp': 10, 'diastolic_bp': 20, 'cholesterol': 20, 'daily_steps': 6000, 'family_history': 0, 'water_intake': 2}
+2. Formatted Model Input: {'sleep_hours': 7.0, 'sleep_quality': 2, 'smoker': 1, 'alcohol': 0, 'bmi': 10.0, 'resting_hr': 10.0, 'systolic_bp': 10.0, 'diastolic_bp': 20.0, 'cholesterol': 20.0, 'daily_steps': 6000, 'family_history': 0, 'water_intake': 2.0}
+3. ML Model Predicted Health Score: 9.516773777777768
+4. ML Calculated Biological Age: 33
+5. Sending Result back to UI: {'chronological_age': 35, 'health_score': 9.52, 'biological_age': 33.0, 'age_acceleration': -2.0}
+--- [VALIDATION END] ---
+
+
+--- Server Started ---
+Incoming Request: OPTIONS http://localhost:8000/predict
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'age': 35, 'sleep_hours': 3.5, 'sleep_quality': 2, 'smoker': 1, 'alcohol': 1, 'bmi': 24, 'resting_hr': 72, 'systolic_bp': 120, 'diastolic_bp': 80, 'cholesterol': 190, 'daily_steps': 6000, 'family_history': 1, 'water_intake': 2}
+2. Formatted Model Input: {'sleep_hours': 3.5, 'sleep_quality': 2, 'smoker': 1, 'alcohol': 1, 'bmi': 24.0, 'resting_hr': 72.0, 'systolic_bp': 120.0, 'diastolic_bp': 80.0, 'cholesterol': 190.0, 'daily_steps': 6000, 'family_history': 1, 'water_intake': 2.0}
+3. ML Model Predicted Health Score: 6.132116888888882
+4. ML Calculated Biological Age: 33
+5. Sending Result back to UI: {'chronological_age': 35, 'health_score': 6.13, 'biological_age': 33.0, 'age_acceleration': -2.0}
+--- [VALIDATION END] ---
+
+Incoming Request: OPTIONS http://localhost:8000/predict
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'age': 20, 'sleep_hours': 8, 'sleep_quality': 2, 'smoker': 0, 'alcohol': 0, 'bmi': 24, 'resting_hr': 72, 'systolic_bp': 120, 'diastolic_bp': 80, 'cholesterol': 190, 'daily_steps': 4000, 'family_history': 0, 'water_intake': 2.5}
+2. Formatted Model Input: {'sleep_hours': 8.0, 'sleep_quality': 2, 'smoker': 0, 'alcohol': 0, 'bmi': 24.0, 'resting_hr': 72.0, 'systolic_bp': 120.0, 'diastolic_bp': 80.0, 'cholesterol': 190.0, 'daily_steps': 4000, 'family_history': 0, 'water_intake': 2.5}
+3. ML Model Predicted Health Score: 8.87020266666667
+4. ML Calculated Biological Age: 19
+5. Sending Result back to UI: {'chronological_age': 20, 'health_score': 8.87, 'biological_age': 19.0, 'age_acceleration': -1.0}
+--- [VALIDATION END] ---
+
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 20, 'gender': 'male', 'sleepHours': 8, 'sleepQuality': 'good', 'dailySteps': 4000, 'waterIntake': 2.75, 'smoker': False, 'alcoholFrequency': 'never', 'exerciseFrequency': 'occasionally', 'bmi': 24, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': True}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 20, 'gender': 'male', 'sleepHours': 8, 'sleepQuality': 'good', 'dailySteps': 4000, 'waterIntake': 3.25, 'smoker': False, 'alcoholFrequency': 'never', 'exerciseFrequency': 'occasionally', 'bmi': 24, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': True}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 20, 'gender': 'male', 'sleepHours': 8, 'sleepQuality': 'good', 'dailySteps': 4000, 'waterIntake': 3.5, 'smoker': False, 'alcoholFrequency': 'never', 'exerciseFrequency': 'occasionally', 'bmi': 24, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': True}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 20, 'gender': 'male', 'sleepHours': 8, 'sleepQuality': 'good', 'dailySteps': 4500, 'waterIntake': 3.5, 'smoker': False, 'alcoholFrequency': 'never', 'exerciseFrequency': 'occasionally', 'bmi': 24, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': True}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 20, 'gender': 'male', 'sleepHours': 8, 'sleepQuality': 'good', 'dailySteps': 6500, 'waterIntake': 3.5, 'smoker': False, 'alcoholFrequency': 'never', 'exerciseFrequency': 'occasionally', 'bmi': 24, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': True}
+1. Received Raw Data from UI: {'chronologicalAge': 20, 'gender': 'male', 'sleepHours': 8, 'sleepQuality': 'good', 'dailySteps': 5500, 'waterIntake': 3.5, 'smoker': False, 'alcoholFrequency': 'never', 'exerciseFrequency': 'occasionally', 'bmi': 24, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': True}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 20, 'gender': 'male', 'sleepHours': 8, 'sleepQuality': 'good', 'dailySteps': 7000, 'waterIntake': 3.5, 'smoker': False, 'alcoholFrequency': 'never', 'exerciseFrequency': 'occasionally', 'bmi': 24, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': True}
+
+--- Server Started ---
+Incoming Request: OPTIONS http://localhost:8000/predict
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'age': 35, 'sleep_hours': 7, 'sleep_quality': 2, 'smoker': 1, 'alcohol': 1, 'bmi': 24, 'resting_hr': 72, 'systolic_bp': 120, 'diastolic_bp': 80, 'cholesterol': 190, 'daily_steps': 6000, 'family_history': 0, 'water_intake': 0.75}
+2. Formatted Model Input: {'sleep_hours': 7.0, 'sleep_quality': 2, 'smoker': 1, 'alcohol': 1, 'bmi': 24.0, 'resting_hr': 72.0, 'systolic_bp': 120.0, 'diastolic_bp': 80.0, 'cholesterol': 190.0, 'daily_steps': 6000, 'family_history': 0, 'water_intake': 0.75}
+3. ML Model Predicted Health Score: 8.277447999999996
+4. ML Calculated Biological Age: 33
+5. Sending Result back to UI: {'chronological_age': 35, 'health_score': 8.28, 'biological_age': 33.0, 'age_acceleration': -2.0}
+--- [VALIDATION END] ---
+
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6.5, 'sleepQuality': 'good', 'dailySteps': 6000, 'waterIntake': 0.75, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 24, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 6000, 'waterIntake': 0.75, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 24, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 6500, 'waterIntake': 0.75, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 24, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 7000, 'waterIntake': 0.75, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 24, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 7000, 'waterIntake': 1, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 24, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 7000, 'waterIntake': 1.25, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 24, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 7000, 'waterIntake': 1.25, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 24.5, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 7000, 'waterIntake': 1.25, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 25, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 7000, 'waterIntake': 1.25, 'smoker': False, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 25, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 7000, 'waterIntake': 1.25, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 25, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: OPTIONS http://localhost:8000/predict
+Incoming Request: OPTIONS http://localhost:8000/predict
+Incoming Request: OPTIONS http://localhost:8000/predict
+Incoming Request: OPTIONS http://localhost:8000/predict
+Incoming Request: OPTIONS http://localhost:8000/predict
+Incoming Request: OPTIONS http://localhost:8000/predict
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 7000, 'waterIntake': 1.25, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 25.5, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 7000, 'waterIntake': 1.25, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 26, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 7000, 'waterIntake': 1.25, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 26.5, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 7000, 'waterIntake': 1.25, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 27, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 7000, 'waterIntake': 1.25, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 7000, 'waterIntake': 1.25, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 27.5, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 7000, 'waterIntake': 1.5, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 7000, 'waterIntake': 1.75, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 7000, 'waterIntake': 2, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 7000, 'waterIntake': 2.5, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 7000, 'waterIntake': 3, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 7000, 'waterIntake': 2.25, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 7000, 'waterIntake': 2.75, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 7000, 'waterIntake': 3.75, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 7000, 'waterIntake': 3.25, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 7000, 'waterIntake': 4.25, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 7000, 'waterIntake': 3.5, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 7000, 'waterIntake': 4, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 7000, 'waterIntake': 4.5, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 7000, 'waterIntake': 4.75, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 7000, 'waterIntake': 5, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 7000, 'waterIntake': 4.5, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 7000, 'waterIntake': 3.75, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 7000, 'waterIntake': 3.5, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 7000, 'waterIntake': 2.5, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+Incoming Request: POST http://localhost:8000/predict
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 7000, 'waterIntake': 2.25, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 7000, 'waterIntake': 2, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 7000, 'waterIntake': 1.5, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 7000, 'waterIntake': 1.25, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 7000, 'waterIntake': 1, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 7000, 'waterIntake': 0.5, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 7000, 'waterIntake': 0.75, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 7000, 'waterIntake': 3, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 8000, 'waterIntake': 0.5, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 9000, 'waterIntake': 0.5, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 10500, 'waterIntake': 0.5, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 15500, 'waterIntake': 0.5, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 12000, 'waterIntake': 0.5, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 17000, 'waterIntake': 0.5, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 14000, 'waterIntake': 0.5, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 19000, 'waterIntake': 0.5, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 20000, 'waterIntake': 0.5, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6, 'sleepQuality': 'good', 'dailySteps': 18000, 'waterIntake': 0.5, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 6.5, 'sleepQuality': 'good', 'dailySteps': 20000, 'waterIntake': 0.5, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 7, 'sleepQuality': 'good', 'dailySteps': 20000, 'waterIntake': 0.5, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 7.5, 'sleepQuality': 'good', 'dailySteps': 20000, 'waterIntake': 0.5, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 9, 'sleepQuality': 'good', 'dailySteps': 20000, 'waterIntake': 0.5, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 8.5, 'sleepQuality': 'good', 'dailySteps': 20000, 'waterIntake': 0.5, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 10, 'sleepQuality': 'good', 'dailySteps': 20000, 'waterIntake': 0.5, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 9.5, 'sleepQuality': 'good', 'dailySteps': 20000, 'waterIntake': 0.5, 'smoker': True, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 10, 'sleepQuality': 'good', 'dailySteps': 20000, 'waterIntake': 0.5, 'smoker': False, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 28, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: OPTIONS http://localhost:8000/predict
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'age': 35, 'sleep_hours': 7, 'sleep_quality': 2, 'smoker': 0, 'alcohol': 1, 'bmi': 24, 'resting_hr': 72, 'systolic_bp': 120, 'diastolic_bp': 80, 'cholesterol': 190, 'daily_steps': 6000, 'family_history': 0, 'water_intake': 2}
+2. Formatted Model Input: {'sleep_hours': 7.0, 'sleep_quality': 2, 'smoker': 0, 'alcohol': 1, 'bmi': 24.0, 'resting_hr': 72.0, 'systolic_bp': 120.0, 'diastolic_bp': 80.0, 'cholesterol': 190.0, 'daily_steps': 6000, 'family_history': 0, 'water_intake': 2.0}
+3. ML Model Predicted Health Score: 9.266492888888891
+4. ML Calculated Biological Age: 33
+5. Sending Result back to UI: {'chronological_age': 35, 'health_score': 9.27, 'biological_age': 33.0, 'age_acceleration': -2.0}
+--- [VALIDATION END] ---
+
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'chronologicalAge': 35, 'gender': 'male', 'sleepHours': 7, 'sleepQuality': 'good', 'dailySteps': 6000, 'waterIntake': 3.25, 'smoker': False, 'alcoholFrequency': 'occasionally', 'exerciseFrequency': 'weekly', 'bmi': 24, 'restingHeartRate': 72, 'systolicBP': 120, 'diastolicBP': 80, 'cholesterolTotal': 190, 'bloodSugar': 95, 'familyHeartDisease': False, 'familyDiabetes': False, 'familyCancer': False, 'familyLongevity': False}
+Incoming Request: OPTIONS http://localhost:8000/predict
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'age': 35, 'sleep_hours': 7, 'sleep_quality': 2, 'smoker': 1, 'alcohol': 1, 'bmi': 24, 'resting_hr': 72, 'systolic_bp': 120, 'diastolic_bp': 80, 'cholesterol': 190, 'daily_steps': 6000, 'family_history': 1, 'water_intake': 2}
+2. Formatted Model Input: {'sleep_hours': 7.0, 'sleep_quality': 2, 'smoker': 1, 'alcohol': 1, 'bmi': 24.0, 'resting_hr': 72.0, 'systolic_bp': 120.0, 'diastolic_bp': 80.0, 'cholesterol': 190.0, 'daily_steps': 6000, 'family_history': 1, 'water_intake': 2.0}
+3. ML Model Predicted Health Score: 8.115946666666664
+4. ML Calculated Biological Age: 33
+5. Sending Result back to UI: {'chronological_age': 35, 'health_score': 8.12, 'biological_age': 33.0, 'age_acceleration': -2.0}
+--- [VALIDATION END] ---
+
+Incoming Request: OPTIONS http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+
+--- Server Started ---
+Incoming Request: OPTIONS http://localhost:8000/predict
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'age': 20, 'sleep_hours': 8, 'sleep_quality': 2, 'smoker': 0, 'alcohol': 0, 'bmi': 24, 'resting_hr': 72, 'systolic_bp': 75, 'diastolic_bp': 80, 'cholesterol': 190, 'daily_steps': 3000, 'family_history': 0, 'water_intake': 2}
+2. Formatted Model Input: {'sleep_hours': 8.0, 'sleep_quality': 2, 'smoker': 0, 'alcohol': 0, 'bmi': 24.0, 'resting_hr': 72.0, 'systolic_bp': 75.0, 'diastolic_bp': 80.0, 'cholesterol': 190.0, 'daily_steps': 3000, 'family_history': 0, 'water_intake': 2.0}
+3. ML Model Predicted Health Score: 9.445462666666664
+4. ML Calculated Biological Age: 19
+5. Sending Result back to UI: {'chronological_age': 20, 'health_score': 9.45, 'biological_age': 19.0, 'age_acceleration': -1.0}
+--- [VALIDATION END] ---
+
+Incoming Request: OPTIONS http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+
+--- Server Started ---
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'age': 20, 'sleep_hours': 8, 'sleep_quality': 2, 'smoker': 0, 'alcohol': 0, 'bmi': 24, 'resting_hr': 72, 'systolic_bp': 75, 'diastolic_bp': 80, 'cholesterol': 190, 'daily_steps': 3000, 'family_history': 0, 'water_intake': 2}
+2. Formatted Model Input: {'sleep_hours': 8.0, 'sleep_quality': 2, 'smoker': 0, 'alcohol': 0, 'bmi': 24.0, 'resting_hr': 72.0, 'systolic_bp': 75.0, 'diastolic_bp': 80.0, 'cholesterol': 190.0, 'daily_steps': 3000, 'family_history': 0, 'water_intake': 2.0}
+3. ML Model Predicted Health Score: 9.445462666666662
+4. ML Calculated Biological Age: 19
+5. Sending Result back to UI: {'chronological_age': 20, 'health_score': 9.45, 'biological_age': 19.0, 'age_acceleration': -1.0}
+--- [VALIDATION END] ---
+
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+
+--- Server Started ---
+
+--- Server Started ---
+Incoming Request: OPTIONS http://localhost:8000/predict
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'age': 35, 'sleep_hours': 7, 'sleep_quality': 2, 'smoker': 0, 'alcohol': 1, 'bmi': 24, 'resting_hr': 72, 'systolic_bp': 120, 'diastolic_bp': 80, 'cholesterol': 190, 'daily_steps': 6000, 'family_history': 0, 'water_intake': 2}
+2. Formatted Model Input: {'sleep_hours': 7.0, 'sleep_quality': 2, 'smoker': 0, 'alcohol': 1, 'bmi': 24.0, 'resting_hr': 72.0, 'systolic_bp': 120.0, 'diastolic_bp': 80.0, 'cholesterol': 190.0, 'daily_steps': 6000, 'family_history': 0, 'water_intake': 2.0}
+3. ML Model Predicted Health Score: 9.266492888888891
+4. ML Calculated Biological Age: 33
+5. Sending Result back to UI: {'chronological_age': 35, 'health_score': 9.27, 'biological_age': 33.0, 'age_acceleration': -2.0}
+--- [VALIDATION END] ---
+
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+
+--- Server Started ---
+Incoming Request: OPTIONS http://localhost:8000/predict
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'age': 35, 'sleep_hours': 7, 'sleep_quality': 2, 'smoker': 0, 'alcohol': 1, 'bmi': 24, 'resting_hr': 72, 'systolic_bp': 120, 'diastolic_bp': 80, 'cholesterol': 190, 'daily_steps': 6000, 'family_history': 0, 'water_intake': 2}
+2. Formatted Model Input: {'sleep_hours': 7.0, 'sleep_quality': 2, 'smoker': 0, 'alcohol': 1, 'bmi': 24.0, 'resting_hr': 72.0, 'systolic_bp': 120.0, 'diastolic_bp': 80.0, 'cholesterol': 190.0, 'daily_steps': 6000, 'family_history': 0, 'water_intake': 2.0}
+3. ML Model Predicted Health Score: 9.266492888888891
+4. ML Calculated Biological Age: 33
+5. Sending Result back to UI: {'chronological_age': 35, 'health_score': 9.27, 'biological_age': 33.0, 'age_acceleration': -2.0}
+--- [VALIDATION END] ---
+
+Incoming Request: OPTIONS http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/predict
+
+--- [REQUEST RECEIVED] ---
+1. Received Raw Data from UI: {'age': 35, 'sleep_hours': 7, 'sleep_quality': 2, 'smoker': 0, 'alcohol': 1, 'bmi': 24, 'resting_hr': 72, 'systolic_bp': 120, 'diastolic_bp': 80, 'cholesterol': 190, 'daily_steps': 6000, 'family_history': 0, 'water_intake': 2}
+2. Formatted Model Input: {'sleep_hours': 7.0, 'sleep_quality': 2, 'smoker': 0, 'alcohol': 1, 'bmi': 24.0, 'resting_hr': 72.0, 'systolic_bp': 120.0, 'diastolic_bp': 80.0, 'cholesterol': 190.0, 'daily_steps': 6000, 'family_history': 0, 'water_intake': 2.0}
+3. ML Model Predicted Health Score: 9.266492888888893
+4. ML Calculated Biological Age: 33
+5. Sending Result back to UI: {'chronological_age': 35, 'health_score': 9.27, 'biological_age': 33.0, 'age_acceleration': -2.0}
+--- [VALIDATION END] ---
+
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
+Incoming Request: POST http://localhost:8000/simulate
