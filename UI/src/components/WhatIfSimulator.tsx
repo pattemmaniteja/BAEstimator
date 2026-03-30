@@ -134,8 +134,8 @@ export function WhatIfSimulator({
                   </div>
                   {ageDiff !== 0 && (
                     <div className={ageDiff < 0 ? 'text-health-excellent' : 'text-health-risk'}>
-                      {ageDiff < 0 ? <TrendingDown /> : <TrendingUp />}
-                      {Math.abs(ageDiff)} years
+                      {Math.round(ageDiff) < 0 ? <TrendingDown /> : <TrendingUp />}
+                      {Math.round(Math.abs(ageDiff))} years
                     </div>
                   )}
                 </div>

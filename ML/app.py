@@ -1,196 +1,131 @@
 import pandas as pd
+import numpy as np
 import joblib
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import uvicorn
-import os
 
-# Initialize FastAPI app
-app = FastAPI(title="Biological Age Predictor API")
+app = FastAPI()
 
-# Enable CORS to allow requests from the frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allows all origins. In production, replace with your frontend URL.
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Load the trained model
-# Ensure health_model.pkl exists in the same directory
-MODEL_PATH = "health_model.pkl"
-if os.path.exists(MODEL_PATH):
-    model = joblib.load(MODEL_PATH)
-else:
-    model = None
-    print(f"Warning: {MODEL_PATH} not found. Make sure to run train_model.py first.")
+rf = joblib.load("rf_model.pkl")
+xgb = joblib.load("xgb_model.pkl")
+gb = joblib.load("gb_model.pkl")
+meta = joblib.load("meta_model.pkl")
+scaler = joblib.load("scaler.pkl")
 
-# Define input data schema using Pydantic
+features = [
+"sleep_hours","sleep_quality","smoker","alcohol","exercise_minutes",
+"daily_steps","diet_quality","water_intake","stress_level","bmi",
+"resting_hr","systolic_bp","diastolic_bp","cholesterol","glucose",
+"oxygen_saturation","family_history","inflammation_index"
+]
+
 class HealthData(BaseModel):
     age: int
     sleep_hours: float
-    sleep_quality: int  # 0: Poor, 1: Average, 2: Good
-    smoker: int         # 0: No, 1: Yes
-    alcohol: int        # 0: No, 1: Yes
+    sleep_quality: int
+    smoker: int
+    alcohol: int
+    exercise_minutes: float
+    daily_steps: int
+    diet_quality: int
+    water_intake: float
+    stress_level: int
     bmi: float
     resting_hr: float
     systolic_bp: float
     diastolic_bp: float
     cholesterol: float
-    daily_steps: int
-    family_history: int # 0: No, 1: Yes
-    water_intake: float
+    glucose: float
+    oxygen_saturation: float
+    family_history: int
+    inflammation_index: float
 
-def compute_biological_age(age, health_score):
-    """
-    Calculates biological age based on chronological age and predicted health score.
-    Logic replicated from predict_age.py.
-    """
-    if age <= 25:
-        max_diff = 1
-    elif age <= 35:
-        max_diff = 2
-    elif age <= 50:
-        max_diff = 4
-    elif age <= 65:
-        max_diff = 6
-    else:
-        max_diff = 8
+def predict_pipeline(data):
+    input_dict = data.model_dump()
+    age = input_dict["age"]
 
-    raw_bio_age = age + (5 - health_score) * 2
-    return max(age - max_diff, min(age + max_diff, raw_bio_age))
+    model_input = {k: input_dict[k] for k in features}
+    df = pd.DataFrame([model_input])
 
-# Define log file path explicitly and create it immediately
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-LOG_FILE_PATH = os.path.join(BASE_DIR, "backend_logs.txt")
-print(f"✅ Validation logs will be saved to: {LOG_FILE_PATH}")
+    scaled = scaler.transform(df.values)
 
-with open(LOG_FILE_PATH, "a") as f:
-    f.write("\n--- Server Started ---\n")
+    rf_p = rf.predict(scaled)
+    xgb_p = xgb.predict(scaled)
+    gb_p = gb.predict(scaled)
+    print("\n========== BASE MODEL OUTPUTS ==========")
+    print("Random Forest:", rf_p)
+    print("XGBoost:", xgb_p)
+    print("Gradient Boosting:", gb_p)
 
-# Middleware to log ALL requests (helps debug connection issues)
-@app.middleware("http")
-async def log_requests(request: Request, call_next):
-    with open(LOG_FILE_PATH, "a") as f:
-        f.write(f"Incoming Request: {request.method} {request.url}\n")
-    response = await call_next(request)
-    return response
+    # Stacking
+    stack = np.column_stack((rf_p, xgb_p, gb_p))
+
+    print("\n========== STACKED INPUT ==========")
+    print(stack)
+
+    acc = meta.predict(stack)[0]
+    bio_age = age + acc
+
+    health_score = 10 - abs(acc)   
+    health_score = (
+        10 - abs(acc) +
+
+        input_dict["sleep_quality"] * 0.5 +
+        (1 - input_dict["smoker"]) * 1 +
+        (input_dict["exercise_minutes"] / 30) * 0.5 +
+
+        - abs(input_dict["bmi"] - 22) / 5
+        - (input_dict["systolic_bp"] - 120) / 30
+        - (input_dict["cholesterol"] - 180) / 60
+    )
+    health_score = max(0, min(10, health_score))
+
+    bio_age = round(float(bio_age), 2)
+    acc = round(float(acc), 2)
+    health_score = round(float(health_score), 2)
+
+    print("\n========== FINAL OUTPUT ==========")
+    print("Chronological Age:", age)
+    print("Biological Age:", bio_age)
+    print("Age Acceleration:", acc)
+    print("Health Score:", health_score)
+    print("==================================\n")
+    return {
+        "chronological_age": age,
+        "health_score": round(float(health_score), 2),
+        "biological_age": round(float(bio_age), 2),
+        "age_acceleration": round(float(acc), 2)
+    }
 
 @app.get("/")
-def read_root():
-    return {"message": "Biological Age Predictor API is running"}
+def root():
+    return {"message": "API running"}
 
 @app.post("/predict")
-async def predict(request: Request):
-    def log_validation(msg):
-        print(msg, flush=True)
-        with open(LOG_FILE_PATH, "a") as f:
-            f.write(str(msg) + "\n")
-
-    # Log immediately when the endpoint is hit
-    log_validation("\n--- [REQUEST RECEIVED] ---")
-
-    if model is None:
-        log_validation("❌ Error: Model not loaded. 'health_model.pkl' is missing.")
-        raise HTTPException(status_code=500, detail="Model file not found. Please train the model first.")
-
+def predict(data: HealthData):
     try:
-        # Get raw JSON body first to ensure we log it even if validation fails
-        raw_body = await request.json()
-        
-        # Log received data IMMEDIATELY
-        log_validation(f"1. Received Raw Data from UI: {raw_body}")
-
-        # Validate data against schema manually
-        try:
-            data = HealthData(**raw_body)
-        except Exception as e:
-            log_validation(f"❌ Validation Error: {str(e)}")
-            log_validation("--- [VALIDATION END (ERROR)] ---\n")
-            raise HTTPException(status_code=422, detail=f"Validation Error: {str(e)}")
-
-        # Prepare input dataframe matching the training features order
-        features = [
-            "sleep_hours", "sleep_quality",
-            "smoker", "alcohol", "bmi",
-            "resting_hr", "systolic_bp", "diastolic_bp",
-            "cholesterol", "daily_steps",
-            "family_history", "water_intake"
-        ]
-
-        # Extract data in the correct order
-        input_dict = data.model_dump()
-        model_input = {k: input_dict[k] for k in features}
-
-        log_validation(f"2. Formatted Model Input: {model_input}")
-
-        df = pd.DataFrame([model_input])
-
-        # Predict health score
-        health_score = model.predict(df)[0]
-        log_validation(f"3. ML Model Predicted Health Score: {health_score}")
-
-        # Calculate biological age
-        bio_age = compute_biological_age(data.age, health_score)
-        log_validation(f"4. ML Calculated Biological Age: {bio_age}")
-
-        result = {
-            "chronological_age": data.age,
-            "health_score": round(float(health_score), 2),
-            "biological_age": round(float(bio_age), 2),
-            "age_acceleration": round(float(bio_age - data.age), 2)
-        }
-
-        log_validation(f"5. Sending Result back to UI: {result}")
-        log_validation("--- [VALIDATION END] ---\n")
-        return result
-    except HTTPException:
-        raise
+        print("Received Data:", data.dict())
+        return predict_pipeline(data)
     except Exception as e:
-        log_validation(f"❌ Server Error: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/simulate")
-async def simulate(request: Request):
-    if model is None:
-        raise HTTPException(status_code=500, detail="Model not loaded")
-
+def simulate(data: HealthData):
     try:
-        raw_body = await request.json()
-
-        try:
-            data = HealthData(**raw_body)
-        except Exception as e:
-            raise HTTPException(status_code=422, detail=str(e))
-
-        features = [
-            "sleep_hours", "sleep_quality",
-            "smoker", "alcohol", "bmi",
-            "resting_hr", "systolic_bp", "diastolic_bp",
-            "cholesterol", "daily_steps",
-            "family_history", "water_intake"
-        ]
-
-        input_dict = data.model_dump()
-        model_input = {k: input_dict[k] for k in features}
-
-        df = pd.DataFrame([model_input])
-
-        health_score = float(model.predict(df)[0])
-        biological_age = compute_biological_age(data.age, health_score)
-
-        return {
-            "health_score": round(health_score, 2),
-            "biological_age": round(biological_age, 2),
-            "age_acceleration": round(biological_age - data.age, 2)
-        }
-
+        print("Simulation Data:", data.dict())
+        return predict_pipeline(data)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-
 if __name__ == "__main__":
-    # Run the API server
     uvicorn.run(app, host="0.0.0.0", port=8000)

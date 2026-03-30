@@ -32,8 +32,8 @@ export function generateHealthReport(formData: HealthFormData, results: HealthRe
   
   const summaryData = [
     ['Chronological Age', `${formData.chronologicalAge} years`],
-    ['Biological Age', `${results.biologicalAge} years`],
-    ['Age Difference', `${results.ageDifference > 0 ? '+' : ''}${results.ageDifference} years`],
+    ['Biological Age', `${Math.round(results.biologicalAge)} years`],
+    ['Age Difference', `${Math.round(results.ageDifference) > 0 ? '+' : ''}${Math.round(results.ageDifference)} years`],
     ['Health Score', `${results.healthScore}/10`],
     ['Risk Zone', results.riskZone.toUpperCase()],
   ];

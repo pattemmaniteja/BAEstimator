@@ -14,7 +14,7 @@ interface HealthResultsProps {
   formData: HealthFormData;
   onReset: () => void;
   onDownload: () => void;
-  onSimulate: (changes: Partial<HealthFormData>) => HealthResultsType;
+  onSimulate: (changes: Partial<HealthFormData>) => Promise<HealthResultsType>;
 }
 
 export function HealthResults({ results, formData, onReset, onDownload, onSimulate }: HealthResultsProps) {
@@ -80,9 +80,9 @@ export function HealthResults({ results, formData, onReset, onDownload, onSimula
                       : 'bg-secondary text-secondary-foreground'
                   }`}>
                     {results.ageDifference < 0 
-                      ? `${Math.abs(results.ageDifference)} years younger` 
+                      ? `${Math.round(Math.abs(results.ageDifference))} years younger` 
                       : results.ageDifference > 0 
-                      ? `${results.ageDifference} years older`
+                      ? `${Math.round(results.ageDifference)} years older`
                       : 'Same as chronological age'}
                   </span>
                 </div>

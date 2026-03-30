@@ -7,12 +7,13 @@ import { HealthChatbot } from '@/components/HealthChatbot';
 import { DisclaimerSection } from '@/components/DisclaimerSection';
 import { Footer } from '@/components/Footer';
 import { HealthFormData, HealthResults as HealthResultsType } from '@/types/health';
-import { calculateHealthResults, simulateWhatIf } from '@/utils/healthCalculator';
+import { calculateHealthResults } from '@/utils/healthCalculator';
 import { generateHealthReport } from '@/utils/pdfGenerator';
 
 const Index = () => {
   const [formData, setFormData] = useState<HealthFormData | null>(null);
   const [results, setResults] = useState<HealthResultsType | null>(null);
+
   const formRef = useRef<HTMLDivElement>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
 
@@ -20,69 +21,135 @@ const Index = () => {
     formRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  // ✅ MAIN PREDICT FUNCTION (MERGED)
   const handleFormSubmit = async (formData: HealthFormData) => {
-  // 1. MAP Frontend Data to Backend Format
-  const backendData = {
-    age: formData.chronologicalAge,
-    sleep_hours: formData.sleepHours,
-    // Map 'poor'->0, 'fair'->1, 'good'->2, 'excellent'->2
-    sleep_quality: ['poor', 'fair', 'good', 'excellent'].indexOf(formData.sleepQuality) > 1 ? 2 : ['poor', 'fair', 'good', 'excellent'].indexOf(formData.sleepQuality),
-    // Map boolean to 0 or 1
-    smoker: formData.smoker ? 1 : 0,
-    // Map frequency to 0 or 1 (assuming 'never' is 0, others 1)
-    alcohol: formData.alcoholFrequency === 'never' ? 0 : 1,
-    bmi: formData.bmi,
-    resting_hr: formData.restingHeartRate,
-    systolic_bp: formData.systolicBP,
-    diastolic_bp: formData.diastolicBP,
-    cholesterol: formData.cholesterolTotal,
-    daily_steps: formData.dailySteps,
-    // Combine family history booleans into one flag
-    family_history: (formData.familyHeartDisease || formData.familyDiabetes || formData.familyCancer) ? 1 : 0,
-    water_intake: formData.waterIntake
-  };
+    try {
+      const payload = {
+        age: formData.chronologicalAge,
+        diet_quality:
+          formData.dietQuality === 'poor' ? 0 :
+          formData.dietQuality === 'good' ? 1 : 2,
+        stress_level:
+          formData.stressLevel === 'low' ? 0 :
+          formData.stressLevel === 'medium' ? 1 : 2,
+        sleep_hours: formData.sleepHours,
+        sleep_quality:
+          formData.sleepQuality === 'poor' ? 0 :
+          formData.sleepQuality === 'fair' ? 1 :
+          formData.sleepQuality === 'good' ? 2 : 3,
+        smoker: formData.smoker ? 1 : 0,
+        alcohol:
+          formData.alcoholFrequency === 'never' ? 0 :
+          formData.alcoholFrequency === 'occasionally' ? 1 :
+          formData.alcoholFrequency === 'weekly' ? 2 : 3,
+        exercise_minutes: formData.exerciseTime,
+        bmi: formData.bmi,
+        resting_hr: formData.restingHeartRate,
+        systolic_bp: formData.systolicBP,
+        diastolic_bp: formData.diastolicBP,
+        cholesterol: formData.cholesterolTotal,
+        glucose: formData.bloodSugar,
+        oxygen_saturation: formData.oxygenSaturation,
+        daily_steps: formData.dailySteps,
+        family_history:
+          formData.familyHeartDisease ||
+          formData.familyDiabetes ||
+          formData.familyCancer ? 1 : 0,
+        water_intake: formData.waterIntake,
+        inflammation_index: 0
+      };
 
-  try {
-    // 2. SEND to correct URL (http://localhost:8000/predict)
-    const response = await fetch('http://localhost:8000/predict', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(backendData),
-    });
+      const response = await fetch('http://localhost:8000/predict', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
 
-    if (!response.ok) throw new Error('Prediction failed');
-    
-    const apiResult = await response.json();
-    console.log("Prediction Result:", apiResult);
+      if (!response.ok) throw new Error('Prediction failed');
 
-    // Calculate local results to get rich data (metrics, recommendations)
-    const localResults = calculateHealthResults(formData);
+      const ml = await response.json();
 
-    // Merge API results with local structure
-    const finalResults: HealthResultsType = {
-      ...localResults,
-      biologicalAge: apiResult.biological_age,
-      healthScore: apiResult.health_score,
-      ageDifference: apiResult.age_acceleration,
-      riskZone: apiResult.health_score >= 8 ? 'low' : apiResult.health_score >= 5 ? 'medium' : 'high'
-    };
+      const finalResults: HealthResultsType = calculateHealthResults(
+        formData,
+        ml.biological_age,
+        ml.health_score
+      );
 
-    setFormData(formData);
-    setResults(finalResults);
-  } catch (error) {
-    console.error("Error connecting to backend:", error);
-    // Fallback to local calculation if backend fails
-    const localResults = calculateHealthResults(formData);
-    setFormData(formData);
-    setResults(localResults);
-  }
-    
-    // Scroll to results after a short delay
+      setFormData(formData);
+      setResults(finalResults);
+
+    } catch (error) {
+      console.error(error);
+    }
+
     setTimeout(() => {
       resultsRef.current?.scrollIntoView({ behavior: 'smooth' });
     }, 100);
+  };
+
+  // ✅ WHAT-IF SIMULATION (ASYNC)
+  const handleSimulate = async (
+    changes: Partial<HealthFormData>
+  ): Promise<HealthResultsType> => {
+    if (!formData) return results!;
+
+    const modified = { ...formData, ...changes };
+
+    const payload = {
+      age: modified.chronologicalAge,
+      diet_quality:
+        modified.dietQuality === 'poor' ? 0 :
+        modified.dietQuality === 'good' ? 1 : 2,
+      stress_level:
+        modified.stressLevel === 'low' ? 0 :
+        modified.stressLevel === 'medium' ? 1 : 2,
+      sleep_hours: modified.sleepHours,
+      sleep_quality:
+        modified.sleepQuality === 'poor' ? 0 :
+        modified.sleepQuality === 'fair' ? 1 :
+        modified.sleepQuality === 'good' ? 2 : 3,
+      smoker: modified.smoker ? 1 : 0,
+      alcohol:
+        modified.alcoholFrequency === 'never' ? 0 :
+        modified.alcoholFrequency === 'occasionally' ? 1 :
+        modified.alcoholFrequency === 'weekly' ? 2 : 3,
+      exercise_minutes: modified.exerciseTime,
+      bmi: modified.bmi,
+      resting_hr: modified.restingHeartRate,
+      systolic_bp: modified.systolicBP,
+      diastolic_bp: modified.diastolicBP,
+      cholesterol: modified.cholesterolTotal,
+      glucose: modified.bloodSugar,
+      oxygen_saturation: modified.oxygenSaturation,
+      daily_steps: modified.dailySteps,
+      family_history:
+        modified.familyHeartDisease ||
+        modified.familyDiabetes ||
+        modified.familyCancer ? 1 : 0,
+      water_intake: modified.waterIntake,
+      inflammation_index: 0
+    };
+
+    const response = await fetch('http://localhost:8000/simulate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+
+    if (!response.ok) throw new Error('Simulation failed');
+
+    const ml = await response.json();
+
+    return {
+      biologicalAge: ml.biological_age,
+      healthScore: ml.health_score,
+      ageDifference: ml.age_acceleration,
+      riskZone:
+        ml.health_score >= 7 ? 'low' :
+        ml.health_score >= 4 ? 'medium' : 'high',
+      recommendations: [],
+      metrics: [],
+    };
   };
 
   const handleReset = () => {
@@ -97,26 +164,19 @@ const Index = () => {
     }
   };
 
-  const handleSimulate = (changes: Partial<HealthFormData>): HealthResultsType => {
-    if (formData) {
-      return simulateWhatIf(formData, changes);
-    }
-    return results!;
-  };
-
   return (
     <div className="min-h-screen bg-background">
       <HeroSection onGetStarted={handleGetStarted} />
       <AgeExplainer />
-      
+
       <div ref={formRef}>
         <HealthForm onSubmit={handleFormSubmit} />
       </div>
 
       {results && formData && (
         <div ref={resultsRef}>
-          <HealthResults 
-            results={results} 
+          <HealthResults
+            results={results}
             formData={formData}
             onReset={handleReset}
             onDownload={handleDownload}

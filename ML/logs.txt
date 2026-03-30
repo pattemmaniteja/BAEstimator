@@ -1,0 +1,41 @@
+MODEL PERFORMANCE
+R2 Score: 0.962
+MAE: 0.42
+RMSE: 0.69
+
+Dataset saved as computed.csv
+Models saved successfully
+
+--- NEW RUN ---
+BIOLOGICAL AGE PREDICTIONS
+
+Profile: Athlete
+Chronological Age: 25
+Predicted Biological Age: 23.98
+Age Acceleration: -1.02
+----------------------------------------
+Profile: Healthy Adult
+Chronological Age: 30
+Predicted Biological Age: 25.25
+Age Acceleration: -4.75
+----------------------------------------
+Profile: Office Worker
+Chronological Age: 35
+Predicted Biological Age: 34.97
+Age Acceleration: -0.03
+----------------------------------------
+Profile: Smoker
+Chronological Age: 40
+Predicted Biological Age: 47.28
+Age Acceleration: 7.28
+----------------------------------------
+Profile: Obese
+Chronological Age: 45
+Predicted Biological Age: 55.16
+Age Acceleration: 10.16
+----------------------------------------
+Profile: Active Senior
+Chronological Age: 65
+Predicted Biological Age: 60.0
+Age Acceleration: -5.0
+----------------------------------------

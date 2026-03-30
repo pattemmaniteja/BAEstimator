@@ -49,9 +49,9 @@ export function AgeComparison({ chronologicalAge, biologicalAge }: AgeComparison
       <div className="text-center mt-4" style={{ marginTop: '35px' }}>
         <p className={`text-lg font-medium ${difference < 0 ? 'text-health-excellent' : difference > 0 ? 'text-health-risk' : 'text-muted-foreground'}`}>
           {difference < 0 
-            ? `Your body is ${Math.abs(difference)} years younger than your calendar age! 🎉` 
+            ? `Your body is ${Math.round(Math.abs(difference))} years younger than your calendar age! 🎉` 
             : difference > 0 
-            ? `Your body is aging ${difference} years faster than average.`
+            ? `Your body is aging ${Math.round(difference)} years faster than average.`
             : 'Your biological age matches your chronological age.'}
         </p>
       </div>

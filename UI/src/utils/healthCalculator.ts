@@ -496,61 +496,61 @@ function analyzeFamilyHistory(data: HealthFormData) {
   return { modifier, recommendation };
 }
 
-export async function simulateWhatIf(
-  baseData: HealthFormData,
-  changes: Partial<HealthFormData>
-): Promise<HealthResults> {
+// export async function simulateWhatIf(
+//   baseData: HealthFormData,
+//   changes: Partial<HealthFormData>
+// ): Promise<HealthResults> {
 
-  const modifiedData: HealthFormData = {
-    ...baseData,
-    ...changes,
-  };
+//   const modifiedData: HealthFormData = {
+//     ...baseData,
+//     ...changes,
+//   };
 
-  const payload = {
-    age: modifiedData.chronologicalAge,
-    sleep_hours: modifiedData.sleepHours,
-    sleep_quality:
-      modifiedData.sleepQuality === 'poor' ? 0 :
-      modifiedData.sleepQuality === 'fair' ? 1 :
-      modifiedData.sleepQuality === 'good' ? 2 : 3,
-    smoker: modifiedData.smoker ? 1 : 0,
-    alcohol:
-      modifiedData.alcoholFrequency === 'never' ? 0 :
-      modifiedData.alcoholFrequency === 'occasionally' ? 1 :
-      modifiedData.alcoholFrequency === 'weekly' ? 2 : 3,
-    bmi: modifiedData.bmi,
-    resting_hr: modifiedData.restingHeartRate,
-    systolic_bp: modifiedData.systolicBP,
-    diastolic_bp: modifiedData.diastolicBP,
-    cholesterol: modifiedData.cholesterolTotal,
-    daily_steps: modifiedData.dailySteps,
-    family_history:
-      modifiedData.familyHeartDisease ||
-      modifiedData.familyDiabetes ||
-      modifiedData.familyCancer ? 1 : 0,
-    water_intake: modifiedData.waterIntake,
-  };
+//   const payload = {
+//     age: modifiedData.chronologicalAge,
+//     sleep_hours: modifiedData.sleepHours,
+//     sleep_quality:
+//       modifiedData.sleepQuality === 'poor' ? 0 :
+//       modifiedData.sleepQuality === 'fair' ? 1 :
+//       modifiedData.sleepQuality === 'good' ? 2 : 3,
+//     smoker: modifiedData.smoker ? 1 : 0,
+//     alcohol:
+//       modifiedData.alcoholFrequency === 'never' ? 0 :
+//       modifiedData.alcoholFrequency === 'occasionally' ? 1 :
+//       modifiedData.alcoholFrequency === 'weekly' ? 2 : 3,
+//     bmi: modifiedData.bmi,
+//     resting_hr: modifiedData.restingHeartRate,
+//     systolic_bp: modifiedData.systolicBP,
+//     diastolic_bp: modifiedData.diastolicBP,
+//     cholesterol: modifiedData.cholesterolTotal,
+//     daily_steps: modifiedData.dailySteps,
+//     family_history:
+//       modifiedData.familyHeartDisease ||
+//       modifiedData.familyDiabetes ||
+//       modifiedData.familyCancer ? 1 : 0,
+//     water_intake: modifiedData.waterIntake,
+//   };
 
-  const response = await fetch('http://localhost:8000/simulate', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload),
-  });
+//   const response = await fetch('http://localhost:8000/simulate', {
+//     method: 'POST',
+//     headers: { 'Content-Type': 'application/json' },
+//     body: JSON.stringify(payload),
+//   });
 
-  if (!response.ok) {
-    throw new Error('Simulation failed');
-  }
+//   if (!response.ok) {
+//     throw new Error('Simulation failed');
+//   }
 
-  const ml = await response.json();
+//   const ml = await response.json();
 
-  return {
-    biologicalAge: ml.biological_age,
-    healthScore: ml.health_score,
-    ageDifference: ml.age_acceleration,
-    riskZone:
-      ml.health_score >= 7 ? 'low' :
-      ml.health_score >= 4 ? 'medium' : 'high',
-    recommendations: [],
-    metrics: [],
-  };
-}
+//   return {
+//     biologicalAge: ml.biological_age,
+//     healthScore: ml.health_score,
+//     ageDifference: ml.age_acceleration,
+//     riskZone:
+//       ml.health_score >= 7 ? 'low' :
+//       ml.health_score >= 4 ? 'medium' : 'high',
+//     recommendations: [],
+//     metrics: [],
+//   };
+// }

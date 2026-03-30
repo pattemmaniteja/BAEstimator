@@ -29,19 +29,23 @@ const steps = [
 const defaultFormData: HealthFormData = {
   chronologicalAge: 35,
   gender: 'male',
+  dietQuality: 'good',
+  stressLevel: 'low',
   sleepHours: 7,
   sleepQuality: 'good',
   dailySteps: 6000,
   waterIntake: 2,
   smoker: false,
   alcoholFrequency: 'occasionally',
-  exerciseFrequency: 'weekly',
+  exerciseFrequency: 'never',
+  exerciseTime:60,
   bmi: 24,
   restingHeartRate: 72,
   systolicBP: 120,
   diastolicBP: 80,
   cholesterolTotal: 190,
   bloodSugar: 95,
+  oxygenSaturation: 95,
   familyHeartDisease: false,
   familyDiabetes: false,
   familyCancer: false,
@@ -109,6 +113,42 @@ export function HealthForm({ onSubmit }: HealthFormProps) {
                 ))}
               </RadioGroup>
             </div>
+
+            <div className="space-y-3">
+              <Label>Diet Quality</Label>
+              <Select 
+                value={formData.dietQuality} 
+                onValueChange={(v) => updateField('dietQuality', v as any)}
+              >
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="poor">Poor</SelectItem>
+                  <SelectItem value="good">Good</SelectItem>
+                  <SelectItem value="excellent">Excellent</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="space-y-3">
+              <Label>Stress Level</Label>
+              <Select 
+                value={formData.stressLevel} 
+                onValueChange={(v) => updateField('stressLevel', v as any)}
+              >
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="low">Low</SelectItem>
+                  <SelectItem value="medium">Medium</SelectItem>
+                  <SelectItem value="high">High</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+
           </div>
         );
 
@@ -254,6 +294,23 @@ export function HealthForm({ onSubmit }: HealthFormProps) {
                   <SelectItem value="daily">Daily</SelectItem>
                 </SelectContent>
               </Select>
+              
+              {formData.exerciseFrequency !== 'never' && (
+                  <div className="space-y-2">
+                    <Label>Exercise-Time (mins)</Label>
+                    <Input
+                      type="number"
+                      value={formData.exerciseTime}
+                      onChange={(e) =>{
+                        const val=e.target.value;
+                        updateField('exerciseTime', val==''?'': parseInt(e.target.value));
+                      }}
+                      min={100}
+                      max={350}
+                    />
+                  </div>
+              )}
+
             </div>
           </div>
         );
@@ -270,7 +327,10 @@ export function HealthForm({ onSubmit }: HealthFormProps) {
                 <Input
                   type="number"
                   value={formData.bmi}
-                  onChange={(e) => updateField('bmi', parseFloat(e.target.value) || 0)}
+                  onChange={(e) =>{
+                    const val=e.target.value;
+                    updateField('bmi', val==''?'': parseInt(e.target.value));
+                  }}
                   min={10}
                   max={50}
                   step={0.1}
@@ -284,7 +344,10 @@ export function HealthForm({ onSubmit }: HealthFormProps) {
                 <Input
                   type="number"
                   value={formData.restingHeartRate}
-                  onChange={(e) => updateField('restingHeartRate', parseInt(e.target.value) || 0)}
+                onChange={(e) =>{
+                  const val=e.target.value;
+                  updateField('restingHeartRate', val==''?'': parseInt(e.target.value));
+                }}
                   min={40}
                   max={120}
                 />
@@ -302,7 +365,10 @@ export function HealthForm({ onSubmit }: HealthFormProps) {
                   <Input
                     type="number"
                     value={formData.systolicBP}
-                    onChange={(e) => updateField('systolicBP', parseInt(e.target.value) || 0)}
+                  onChange={(e) =>{
+                    const val=e.target.value;
+                    updateField('systolicBP', val==''?'': parseInt(e.target.value));
+                  }}
                     min={80}
                     max={200}
                   />
@@ -312,7 +378,10 @@ export function HealthForm({ onSubmit }: HealthFormProps) {
                   <Input
                     type="number"
                     value={formData.diastolicBP}
-                    onChange={(e) => updateField('diastolicBP', parseInt(e.target.value) || 0)}
+                    onChange={(e) =>{
+                      const val=e.target.value;
+                      updateField('diastolicBP', val==''?'': parseInt(e.target.value));
+                    }}
                     min={50}
                     max={130}
                   />
@@ -326,7 +395,10 @@ export function HealthForm({ onSubmit }: HealthFormProps) {
                 <Input
                   type="number"
                   value={formData.cholesterolTotal}
-                  onChange={(e) => updateField('cholesterolTotal', parseInt(e.target.value) || 0)}
+                  onChange={(e) =>{
+                    const val=e.target.value;
+                    updateField('cholesterolTotal', val==''?'': parseInt(e.target.value));
+                  }}
                   min={100}
                   max={350}
                 />
@@ -336,9 +408,26 @@ export function HealthForm({ onSubmit }: HealthFormProps) {
                 <Input
                   type="number"
                   value={formData.bloodSugar}
-                  onChange={(e) => updateField('bloodSugar', parseInt(e.target.value) || 0)}
+                  onChange={(e) =>{
+                    const val=e.target.value;
+                    updateField('bloodSugar', val==''? '': parseInt(e.target.value));
+                  }}
                   min={50}
                   max={300}
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label>Oxygen Saturation (%)</Label>
+                <Input
+                  type="number"
+                  value={formData.oxygenSaturation}
+                  onChange={(e) =>{
+                    const val=e.target.value;
+                    updateField('oxygenSaturation', val==''? '': parseInt(e.target.value));
+                  }}
+                  min={0}
+                  max={100}
                 />
               </div>
             </div>

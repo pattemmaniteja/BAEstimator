@@ -2,6 +2,8 @@ export interface HealthFormData {
   // Personal Info
   chronologicalAge: number;
   gender: 'male' | 'female' | 'other';
+  dietQuality: 'poor' | 'good' | 'excellent';
+  stressLevel: 'low' | 'medium' | 'high';
   
   // Sleep & Lifestyle
   sleepHours: number;
@@ -13,6 +15,7 @@ export interface HealthFormData {
   smoker: boolean;
   alcoholFrequency: 'never' | 'occasionally' | 'weekly' | 'daily';
   exerciseFrequency: 'never' | 'occasionally' | 'weekly' | 'daily';
+  exerciseTime: number,
   
   // Health Metrics
   bmi: number;
@@ -21,6 +24,7 @@ export interface HealthFormData {
   diastolicBP: number;
   cholesterolTotal: number;
   bloodSugar: number;
+  oxygenSaturation: number,
   
   // Family History
   familyHeartDisease: boolean;
