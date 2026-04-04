@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  ui:
+    build: ./UI
+    ports:
+      - "8081:8081"
+    depends_on:
+      - ml
+
+  ml:
+    build: ./ML
+    ports:
+      - "8000:8000"
