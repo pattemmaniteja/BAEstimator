@@ -59,7 +59,7 @@ const Index = () => {
         inflammation_index: 0
       };
 
-      const response = await fetch('http://13.127.38.195:8000/predict', {
+      const response = await fetch('/predict', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
@@ -130,7 +130,7 @@ const Index = () => {
       inflammation_index: 0
     };
 
-    const response = await fetch('http://13.127.38.195:8000/simulate', {
+    const response = await fetch('/simulate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
